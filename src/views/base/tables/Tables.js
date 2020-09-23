@@ -1,14 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {
   CBadge,
   CCard,
   CCardBody,
   CCardHeader,
-  CCol,
+  CCol, CCollapse,
   CDataTable,
   CRow
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
 
 import usersData from '../../users/UsersData'
 
@@ -24,126 +23,14 @@ const getBadge = status => {
 const fields = ['name','registered', 'role', 'status']
 
 const Tables = () => {
+
+  const [collapse, setCollapse] = useState(false)
+  const [collapseMulti, setCollapseMulti] = useState([false, false])
+  const [accordion, setAccordion] = useState(1)
+  const [fade, setFade] = useState(true)
+
   return (
     <>
-      <CRow>
-        <CCol xs="12" lg="6">
-          <CCard>
-            <CCardHeader>
-              Simple Table
-              <DocsLink name="CModal"/>
-            </CCardHeader>
-            <CCardBody>
-            <CDataTable
-              items={usersData}
-              fields={fields}
-              itemsPerPage={5}
-              pagination
-              scopedSlots = {{
-                'status':
-                  (item)=>(
-                    <td>
-                      <CBadge color={getBadge(item.status)}>
-                        {item.status}
-                      </CBadge>
-                    </td>
-                  )
-
-              }}
-            />
-            </CCardBody>
-          </CCard>
-        </CCol>
-
-        <CCol xs="12" lg="6">
-          <CCard>
-            <CCardHeader>
-              Striped Table
-            </CCardHeader>
-            <CCardBody>
-            <CDataTable
-              items={usersData}
-              fields={fields}
-              striped
-              itemsPerPage={5}
-              pagination
-              scopedSlots = {{
-                'status':
-                  (item)=>(
-                    <td>
-                      <CBadge color={getBadge(item.status)}>
-                        {item.status}
-                      </CBadge>
-                    </td>
-                  )
-
-              }}
-            />
-            </CCardBody>
-          </CCard>
-        </CCol>
-      </CRow>
-
-      <CRow>
-
-        <CCol xs="12" lg="6">
-          <CCard>
-            <CCardHeader>
-              Condensed Table
-            </CCardHeader>
-            <CCardBody>
-            <CDataTable
-              items={usersData}
-              fields={fields}
-              size="sm"
-              itemsPerPage={5}
-              pagination
-              scopedSlots = {{
-                'status':
-                  (item)=>(
-                    <td>
-                      <CBadge color={getBadge(item.status)}>
-                        {item.status}
-                      </CBadge>
-                    </td>
-                  )
-
-              }}
-            />
-            </CCardBody>
-          </CCard>
-        </CCol>
-
-        <CCol xs="12" lg="6">
-          <CCard>
-            <CCardHeader>
-              Bordered Table
-            </CCardHeader>
-            <CCardBody>
-            <CDataTable
-              items={usersData}
-              fields={fields}
-              bordered
-              itemsPerPage={5}
-              pagination
-              scopedSlots = {{
-                'status':
-                  (item)=>(
-                    <td>
-                      <CBadge color={getBadge(item.status)}>
-                        {item.status}
-                      </CBadge>
-                    </td>
-                  )
-
-              }}
-            />
-            </CCardBody>
-          </CCard>
-        </CCol>
-
-      </CRow>
-
       <CRow>
         <CCol>
           <CCard>
@@ -164,41 +51,9 @@ const Tables = () => {
                 'status':
                   (item)=>(
                     <td>
-                      <CBadge color={getBadge(item.status)}>
-                        {item.status}
-                      </CBadge>
-                    </td>
-                  )
-              }}
-            />
-            </CCardBody>
-          </CCard>
-        </CCol>
-      </CRow>
-        <CRow>
-        <CCol>
-          <CCard>
-            <CCardHeader>
-              Combined All dark Table
-            </CCardHeader>
-            <CCardBody>
-            <CDataTable
-              items={usersData}
-              fields={fields}
-              dark
-              hover
-              striped
-              bordered
-              size="sm"
-              itemsPerPage={10}
-              pagination
-              scopedSlots = {{
-                'status':
-                  (item)=>(
-                    <td>
-                      <CBadge color={getBadge(item.status)}>
-                        {item.status}
-                      </CBadge>
+                       <CBadge color={getBadge(item.status)}>
+                         {item.status}
+                       </CBadge>
                     </td>
                   )
               }}
